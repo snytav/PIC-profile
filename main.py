@@ -5,7 +5,7 @@ L = 1.0
 N = 100
 M = 10
 x = L*torch.linspace(L/M*0.5,L-L/M*0.5,M*2)
-x = np.arange(0.5*L/M,L-L/M*0.5,L/(M))
+x = np.arange(0.25*L/M,L-L/M*0.25,L/(2*M))
 x = torch.from_numpy(x)
 x.requires_grad = True
 q = torch.ones(1,requires_grad=True)
