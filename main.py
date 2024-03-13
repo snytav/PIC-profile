@@ -6,6 +6,7 @@ N = 100
 M = 10
 x = L*torch.linspace(L/M*0.5,L-L/M*0.5,M*2)
 x = np.arange(0.25*L/M,L-L/M*0.25,L/(2*M))
+x = x[:2]
 x = torch.from_numpy(x)
 x.requires_grad = True
 q = torch.ones(1,requires_grad=True)
@@ -29,11 +30,11 @@ def density(X,L,M,N,q):
     i = i_dx.int()
     d = i_dx-i
     ii = i.tolist()
-    n[ii] += (1-d)*q
+    n = torch.add(n[ii],(1-d)*q)
     ii1 = i+1
     ii1 = torch.remainder(ii1,n.shape[0])
     ii1= ii1.tolist()
-    n[ii1] += (d)*q
+    n = torch.add(n[ii1],(d)*q)
     return n
     # n[i]+=
 
